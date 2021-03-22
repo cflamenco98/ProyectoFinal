@@ -15,16 +15,18 @@ public class Tarea {
     public boolean Completa;
     public Date FechaVencimiento;
     public Date FechaDia;
+    public String ListaId; 
     
     public Tarea(){
     }
 
     public Tarea(String Descripcion, boolean EsImportante, boolean Completa,
-            Date FechaVencimiento, Date FechaDia) {
+            Date FechaVencimiento, Date FechaDia, String ListaId) {
         this.Descripcion = Descripcion;
         this.EsImportante = EsImportante;
         this.Completa = Completa;
         this.FechaVencimiento = FechaVencimiento;
+        this.ListaId = ListaId;
     }
     
      public void imprimirTareas() {

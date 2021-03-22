@@ -1,21 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectofinal;
 
-/**
- *
- * @author Heyzi Irias
- */
-public class Dashboard extends javax.swing.JFrame {
+import javax.swing.ImageIcon;
 
-    /**
-     * Creates new form Dashboard
-     */
+
+public class Dashboard extends javax.swing.JFrame {
+    public ImageIcon icTareasParaHoy = new ImageIcon("computer.png");
+
     public Dashboard() {
         initComponents();
+        this.setResizable(false);
+        this.btnTareasParaHoy.setIcon(icTareasParaHoy);
     }
 
     /**
@@ -27,74 +21,118 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnTareasParaHoy = new javax.swing.JButton();
+        btnTareasVencenHoy = new javax.swing.JButton();
+        btnTareasCompletas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        btnCrearListas = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        btnVerListas = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        btnCrearTareas = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        btnVerTareas = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Heyzi Irias\\Pictures\\libros1.png")); // NOI18N
+        btnTareasParaHoy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTareasParaHoyActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnTareasParaHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 79, 144, 160));
+        getContentPane().add(btnTareasVencenHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 79, 141, 160));
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Heyzi Irias\\Pictures\\vence.png")); // NOI18N
-
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Heyzi Irias\\Pictures\\lollolo.png")); // NOI18N
+        btnTareasCompletas.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(btnTareasCompletas, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 79, 156, 160));
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
         jLabel1.setText("TAREAS PARA HOY");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 48, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
         jLabel2.setText("TAREAS VENCEN HOY");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 48, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
         jLabel3.setText("TAREAS COMPLETAS");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 51, -1, 14));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel3)))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
-        );
+        btnCrearListas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearListasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCrearListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 276, 144, 162));
+
+        jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        jLabel4.setText("CREAR LISTAS");
+        jLabel4.setToolTipText("");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 245, -1, -1));
+
+        btnVerListas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerListasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVerListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 276, 144, 162));
+
+        jLabel5.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        jLabel5.setText("VER LISTAS");
+        jLabel5.setToolTipText("");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 245, -1, -1));
+
+        btnCrearTareas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearTareasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCrearTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 480, 144, 162));
+
+        jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        jLabel6.setText("CREAR TAREAS");
+        jLabel6.setToolTipText("");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 450, -1, -1));
+
+        btnVerTareas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerTareasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVerTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 480, 144, 162));
+
+        jLabel7.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        jLabel7.setText("VER TAREAS");
+        jLabel7.setToolTipText("");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTareasParaHoyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTareasParaHoyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTareasParaHoyActionPerformed
+
+    private void btnCrearListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearListasActionPerformed
+        frmCrearListas crearLista = new frmCrearListas();
+        crearLista.show();
+    }//GEN-LAST:event_btnCrearListasActionPerformed
+
+    private void btnVerListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerListasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerListasActionPerformed
+
+    private void btnCrearTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearTareasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCrearTareasActionPerformed
+
+    private void btnVerTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerTareasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerTareasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,11 +170,19 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnCrearListas;
+    private javax.swing.JButton btnCrearTareas;
+    private javax.swing.JButton btnTareasCompletas;
+    private javax.swing.JButton btnTareasParaHoy;
+    private javax.swing.JButton btnTareasVencenHoy;
+    private javax.swing.JButton btnVerListas;
+    private javax.swing.JButton btnVerTareas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,11 +5,19 @@ import javax.swing.ImageIcon;
 
 public class Dashboard extends javax.swing.JFrame {
     public ImageIcon icTareasParaHoy = new ImageIcon("computer.png");
-
+    public ImageIcon icTareasVencenHoy = new ImageIcon ("2.png");
+    public ImageIcon icTareasCompletas = new ImageIcon ("3.png");
+    public ImageIcon icCrearLista = new ImageIcon ("1.png");
+    public ImageIcon icTareas = new ImageIcon ("libros1.png"); 
+    
     public Dashboard() {
         initComponents();
         this.setResizable(false);
         this.btnTareasParaHoy.setIcon(icTareasParaHoy);
+        this.btnTareasVencenHoy.setIcon(icTareasVencenHoy);
+        this.btnTareasCompletas.setIcon(icTareasCompletas);
+        this.btnCrearListas.setIcon(icCrearLista);
+        this.btnVerListas.setIcon(icTareas);
     }
 
     /**
@@ -35,58 +43,74 @@ public class Dashboard extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnTareasParaHoy.setBackground(new java.awt.Color(204, 255, 204));
         btnTareasParaHoy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTareasParaHoyActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTareasParaHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 79, 144, 160));
-        getContentPane().add(btnTareasVencenHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 79, 141, 160));
+        getContentPane().add(btnTareasParaHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 144, 160));
 
-        btnTareasCompletas.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(btnTareasCompletas, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 79, 156, 160));
+        btnTareasVencenHoy.setBackground(new java.awt.Color(204, 204, 255));
+        btnTareasVencenHoy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTareasVencenHoyActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnTareasVencenHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 141, 160));
+
+        btnTareasCompletas.setBackground(new java.awt.Color(255, 204, 204));
+        btnTareasCompletas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTareasCompletasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnTareasCompletas, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 156, 160));
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
         jLabel1.setText("TAREAS PARA HOY");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 48, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
         jLabel2.setText("TAREAS VENCEN HOY");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 48, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
         jLabel3.setText("TAREAS COMPLETAS");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 51, -1, 14));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, -1, 14));
 
+        btnCrearListas.setBackground(new java.awt.Color(214, 234, 248));
         btnCrearListas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearListasActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCrearListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 276, 144, 162));
+        getContentPane().add(btnCrearListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 144, 162));
 
         jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
         jLabel4.setText("LISTAS");
         jLabel4.setToolTipText("");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
 
+        btnVerListas.setBackground(new java.awt.Color(251, 238, 230));
         btnVerListas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerListasActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVerListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 276, 144, 162));
+        getContentPane().add(btnVerListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 144, 162));
 
         jLabel5.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
         jLabel5.setText("TAREAS");
         jLabel5.setToolTipText("");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 60, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTareasParaHoyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTareasParaHoyActionPerformed
-        // TODO add your handling code here:
+        frmTareasParaHoy tareasparahoy = new frmTareasParaHoy();
+        tareasparahoy.show();
     }//GEN-LAST:event_btnTareasParaHoyActionPerformed
 
     private void btnCrearListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearListasActionPerformed
@@ -95,8 +119,19 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearListasActionPerformed
 
     private void btnVerListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerListasActionPerformed
-        // TODO add your handling code here:
+        frmCrearTarea crearTarea = new frmCrearTarea();
+        crearTarea.show();
     }//GEN-LAST:event_btnVerListasActionPerformed
+
+    private void btnTareasVencenHoyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTareasVencenHoyActionPerformed
+       frmTareasVencenHoy vencentareas = new frmTareasVencenHoy();
+       vencentareas.show();
+    }//GEN-LAST:event_btnTareasVencenHoyActionPerformed
+
+    private void btnTareasCompletasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTareasCompletasActionPerformed
+        frmTareasCompletas tareascompletas = new frmTareasCompletas();
+        tareascompletas.show();
+    }//GEN-LAST:event_btnTareasCompletasActionPerformed
 
     /**
      * @param args the command line arguments

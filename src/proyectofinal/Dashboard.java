@@ -31,10 +31,6 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnVerListas = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        btnCrearTareas = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        btnVerTareas = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -70,9 +66,9 @@ public class Dashboard extends javax.swing.JFrame {
         getContentPane().add(btnCrearListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 276, 144, 162));
 
         jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
-        jLabel4.setText("CREAR LISTAS");
+        jLabel4.setText("LISTAS");
         jLabel4.setToolTipText("");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 245, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
 
         btnVerListas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,33 +78,9 @@ public class Dashboard extends javax.swing.JFrame {
         getContentPane().add(btnVerListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 276, 144, 162));
 
         jLabel5.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
-        jLabel5.setText("VER LISTAS");
+        jLabel5.setText("TAREAS");
         jLabel5.setToolTipText("");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 245, -1, -1));
-
-        btnCrearTareas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearTareasActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnCrearTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 480, 144, 162));
-
-        jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
-        jLabel6.setText("CREAR TAREAS");
-        jLabel6.setToolTipText("");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 450, -1, -1));
-
-        btnVerTareas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerTareasActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnVerTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 480, 144, 162));
-
-        jLabel7.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
-        jLabel7.setText("VER TAREAS");
-        jLabel7.setToolTipText("");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -125,14 +97,6 @@ public class Dashboard extends javax.swing.JFrame {
     private void btnVerListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerListasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVerListasActionPerformed
-
-    private void btnCrearTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearTareasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCrearTareasActionPerformed
-
-    private void btnVerTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerTareasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVerTareasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,18 +135,14 @@ public class Dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearListas;
-    private javax.swing.JButton btnCrearTareas;
     private javax.swing.JButton btnTareasCompletas;
     private javax.swing.JButton btnTareasParaHoy;
     private javax.swing.JButton btnTareasVencenHoy;
     private javax.swing.JButton btnVerListas;
-    private javax.swing.JButton btnVerTareas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }

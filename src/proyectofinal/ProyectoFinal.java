@@ -11,16 +11,9 @@ public class ProyectoFinal {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-      
+    public static void main(String[] args) {      
         Dashboard frm = new Dashboard();        
-        frm.show();
-        
-        
-
-        
-      
-    
+        frm.show();    
     } 
 }
     

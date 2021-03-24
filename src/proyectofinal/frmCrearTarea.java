@@ -1,22 +1,260 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectofinal;
 
-/**
- *
- * @author Heyzi Irias
- */
-public class frmCrearTarea extends javax.swing.JFrame {
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.function.Consumer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-    /**
-     * Creates new form frmCrearTarea
-     */
+
+public class frmCrearTarea extends javax.swing.JFrame {
+    ArrayList<Lista> listas = new ArrayList<>();
+    ArrayList<Tarea> listaTareas = new ArrayList<>();
+    Tarea Seleccionado = null;
+
+    
     public frmCrearTarea() {
         initComponents();
+        
+        this.setResizable(false);
+        ObtenerListas();
+        
+        Object [][] datos = new Object[][]{};
+        Object [] columnas = new String [] {"ID", "Descripcion", "Importante", "Completa", "Fecha Vencimiento", "ListaID", "Lista"};
+        
+        DefaultTableModel model = new DefaultTableModel(datos, columnas);
+        dgvTareas.setModel(model);
     }
+    
+    void ObtenerListas()
+    {
+        try {
+            File file = new File("Listas.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            BufferedReader br = new BufferedReader(new FileReader("Listas.txt"));
+            String texto;
+            while((texto = br.readLine()) != null)
+            {
+                String [] Campos = texto.split("[|\n]");
+                if(Campos.length > 0)
+                {
+                    Lista l = new Lista();
+                    l.setListaId(Integer.parseInt(Campos[0]));
+                    l.setNombre(Campos[1]);
+                    listas.add(l);
+                }                
+            }            
+        } catch (IOException ex) {
+            Logger.getLogger(frmCrearListas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    Lista BuscarListaPorId(int id)
+    {
+        for (int i = 0; i < listas.size(); i++) {
+            if(listas.get(i).listaId == id)
+            {
+                return listas.get(i);
+            }
+        }
+        JOptionPane.showMessageDialog(null, "¡Ha ocurrido un error mientras buscabamos las listas!");
+        return new Lista();     
+    }
+    
+    void ActualizarTabla()
+    {
+        Object [][] datos = new Object[listaTareas.size()][7];
+        Object [] columnas = new String[] {"ID", "Descripcion", "Importante", "Completa", "Fecha Vencimiento", "ListaID", "Lista"};
+        
+        for (int i = 0; i < listaTareas.size(); i++) {
+            datos[i][0] = i;
+            datos[i][1] = listaTareas.get(i).Descripcion;
+            datos[i][2] = listaTareas.get(i).EsImportante;
+            datos[i][3] = listaTareas.get(i).Completa;
+            datos[i][4] = listaTareas.get(i).FechaVencimiento;
+            datos[i][5] = listaTareas.get(i).ListaId;
+            
+            Object listaId = listaTareas.get(i).ListaId;
+            Lista listaAsociada = BuscarListaPorId((int)listaId);                        
+            datos[i][6] = listaAsociada.Nombre;
+        }
+        
+        DefaultTableModel model = new DefaultTableModel(datos, columnas);
+        dgvTareas.setModel(model);        
+    }
+    
+    void ActualizarIds()
+    {  
+        for (int i = 0; i < listaTareas.size(); i++) {
+            listaTareas.get(i).tareaId = i;
+        }
+    }
+    
+    void GuardarTareas()
+    {      
+        //Variables              
+        BufferedWriter bwA = null;
+        FileWriter fwA = null;        
+        
+        //Creamos y validamos si existe el archivo
+        try {  
+        File fileA = new File("Tareas.txt");
+        if (!fileA.exists()) {
+            fileA.createNewFile();
+        }
+        
+   
+        fwA = new FileWriter(fileA.getAbsoluteFile(), false);
+        bwA = new BufferedWriter(fwA);
+
+            for (int i = 0; i < listaTareas.size(); i++) {
+                bwA.write(i + "|");
+                bwA.write(listaTareas.get(i).Descripcion + "|");
+                bwA.write(listaTareas.get(i).EsImportante + "|");
+                bwA.write(listaTareas.get(i).Completa + "|");
+                bwA.write(listaTareas.get(i).FechaVencimiento + "|");
+                bwA.write(listaTareas.get(i).ListaId + "|");
+                bwA.newLine();      
+            }
+        
+        } catch (IOException e) {
+            
+        } finally {
+            try {                                
+                if (bwA != null)
+                  bwA.close();
+                if (fwA != null)
+                  fwA.close();
+        } catch (IOException ex) {
+        }
+    }            
+    }
+    
+    Tarea BuscarPorId(int id)
+    {     
+        ActualizarTabla();
+        for (int i = 0; i < listaTareas.size(); i++) {
+            if(listaTareas.get(i).tareaId == id)
+            {
+                return listaTareas.get(i);
+            }       
+        }
+        JOptionPane.showMessageDialog(null, "¡Ha ocurrido un error mientras buscabamos este registro!");
+        return new Tarea();     
+    }
+    
+    void EliminarPorId()
+    {        
+        if(Seleccionado == null)
+        {      
+            JOptionPane.showMessageDialog(null, "¡NO hay un registro seleccionado!"); 
+            return;
+        }       
+
+        for (int i = 0; i < listaTareas.size(); i++) {
+            if(listaTareas.get(i).tareaId == Seleccionado.tareaId)
+            {
+                listaTareas.remove(listaTareas.get(i).tareaId);
+                JOptionPane.showMessageDialog(null, "¡Registro eliminado con exito!"); 
+                ActualizarIds();
+                ActualizarTabla();
+                GuardarTareas();
+                Seleccionado = null;
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "¡Ha ocurrido un error mientras eliminabamos este registro!");            
+    }
+    
+    void ActualizarPorId()
+    {  
+        if(Seleccionado == null)
+        {      
+            JOptionPane.showMessageDialog(null, "¡NO hay un registro seleccionado!"); 
+            return;
+        }       
+        
+        if(!ValidarFormulario())
+        { 
+            return;
+        }
+        
+        for (int i = 0; i < listaTareas.size(); i++) {
+            if(listaTareas.get(i).tareaId == Seleccionado.tareaId)
+            {
+                listaTareas.get(i).setDescripcion(txtDescripcionTarea.getText());
+                listaTareas.get(i).setEsImportante(cbImportante.isSelected());
+                listaTareas.get(i).setCompleta(cbCompletada.isSelected());
+                listaTareas.get(i).setFechaVencimiento(jdFechaVencimiento.getDate());
+                
+                JOptionPane.showMessageDialog(null, "¡Registro editado con exito!");
+                ActualizarIds();
+                ActualizarTabla();
+                GuardarTareas();
+                Seleccionado = null;
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "¡Ha ocurrido un error mientras editabamos este registro!");            
+    }
+    
+    boolean ValidarFormulario()
+    {
+        if("".equals(txtDescripcionTarea.getText()))
+        {
+            JOptionPane.showMessageDialog(null, "¡el campo descripcion esta vacio!"); 
+            return false;
+        }
+        
+        if("".equals(cmbListas.getSelectedItem().toString()))
+        {
+            JOptionPane.showMessageDialog(null, "¡el campo nombre esta vacio!"); 
+            return false;
+        }
+        
+        if("".equals(jdFechaVencimiento.getCalendar()))
+        {
+            JOptionPane.showMessageDialog(null, "¡el campo Fecha esta vacio!"); 
+            return false;
+        }
+        
+        return true;
+    }
+    
+    void VaciarFormulario()
+    {
+        txtDescripcionTarea.setText("");
+        cbCompletada.setSelected(false);
+        cbImportante.setSelected(false);
+        cbParaHoy.setSelected(false); 
+        jdFechaVencimiento.setEnabled(true);
+    }
+    
+    void LlenarComboBox()
+    {
+        cmbListas.removeAllItems();        
+        listas.forEach((Lista lista) -> {
+            cmbListas.addItem(lista.Nombre);
+        });
+        
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,24 +268,28 @@ public class frmCrearTarea extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        dgvTareas = new javax.swing.JTable();
         txtDescripcionTarea = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jdFechaVencimiento = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         btnEditarTarea = new javax.swing.JButton();
         btnEliminarTarea = new javax.swing.JButton();
-        btnGrabarTarea = new javax.swing.JButton();
         btnAgregarTarea = new javax.swing.JButton();
         btnSalirTarea = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        cmbListas = new javax.swing.JComboBox<>();
+        cbParaHoy = new javax.swing.JCheckBox();
+        cbCompletada = new javax.swing.JCheckBox();
+        cbImportante = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 204));
 
@@ -73,27 +315,29 @@ public class frmCrearTarea extends javax.swing.JFrame {
                 .addComponent(jLabel1))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        dgvTareas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        dgvTareas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dgvTareasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(dgvTareas);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jLabel2.setText("Escribe tu Tarea");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3.setText("Lista a la que Pertenece");
-
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel4.setText("Fecha");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setText("Fecha de Vencimiento");
@@ -102,18 +346,35 @@ public class frmCrearTarea extends javax.swing.JFrame {
 
         btnEditarTarea.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
         btnEditarTarea.setText("Editar");
+        btnEditarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarTareaActionPerformed(evt);
+            }
+        });
 
         btnEliminarTarea.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 14)); // NOI18N
         btnEliminarTarea.setText("Eliminar");
-
-        btnGrabarTarea.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 14)); // NOI18N
-        btnGrabarTarea.setText("Grabar");
+        btnEliminarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarTareaActionPerformed(evt);
+            }
+        });
 
         btnAgregarTarea.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 14)); // NOI18N
         btnAgregarTarea.setText("Agregar");
+        btnAgregarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarTareaActionPerformed(evt);
+            }
+        });
 
         btnSalirTarea.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 14)); // NOI18N
         btnSalirTarea.setText("Salir");
+        btnSalirTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirTareaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -122,12 +383,11 @@ public class frmCrearTarea extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEditarTarea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnGrabarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSalirTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAgregarTarea))
-                    .addComponent(btnEliminarTarea))
+                        .addComponent(btnEditarTarea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSalirTarea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminarTarea))
+                    .addComponent(btnAgregarTarea, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -137,105 +397,237 @@ public class frmCrearTarea extends javax.swing.JFrame {
                 .addComponent(btnEditarTarea)
                 .addGap(18, 18, 18)
                 .addComponent(btnEliminarTarea)
-                .addGap(43, 43, 43)
-                .addComponent(btnGrabarTarea)
                 .addGap(18, 18, 18)
                 .addComponent(btnAgregarTarea)
                 .addGap(18, 18, 18)
                 .addComponent(btnSalirTarea)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbListas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jRadioButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jRadioButton1.setText("Importante");
+        cbParaHoy.setText("¿Para hoy?");
+        cbParaHoy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbParaHoyMouseClicked(evt);
+            }
+        });
+        cbParaHoy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbParaHoyActionPerformed(evt);
+            }
+        });
+
+        cbCompletada.setText("Completada");
+
+        cbImportante.setText("Importante");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addGap(278, 278, 278))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(201, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel5))
-                                .addGap(107, 107, 107))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(41, 41, 41)))))
-                        .addGap(37, 37, 37))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDescripcionTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                            .addComponent(cmbListas, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbImportante)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbCompletada)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jdFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                                .addComponent(cbParaHoy))
+                            .addComponent(jLabel5)))
+                    .addComponent(txtDescripcionTarea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(0, 28, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(txtDescripcionTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbListas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cbCompletada)
+                                    .addComponent(cbImportante))
+                                .addGap(61, 61, 61))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cbParaHoy)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jdFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTareaActionPerformed
+        if(!ValidarFormulario())
+        {        
+        }
+        else
+        {
+            Date Fecha = jdFechaVencimiento.getDate();            
+            if(cbParaHoy.isSelected())
+            {
+                Fecha = new Date();
+            }
+            
+            listaTareas.add(new Tarea(txtDescripcionTarea.getText(), cbImportante.isSelected(), cbCompletada.isSelected(), Fecha, cmbListas.getSelectedIndex()));
+            
+            VaciarFormulario();
+            ActualizarIds();
+            ActualizarTabla();  
+            GuardarTareas();
+        }
+    }//GEN-LAST:event_btnAgregarTareaActionPerformed
+
+    private void btnSalirTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirTareaActionPerformed
+        VaciarFormulario();
+        this.dispose();
+        ActualizarTabla();
+        GuardarTareas();
+    }//GEN-LAST:event_btnSalirTareaActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        LlenarComboBox();
+        try {
+            File file = new File("Tareas.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            BufferedReader br = new BufferedReader(new FileReader("Tareas.txt"));
+            String texto;
+            while((texto = br.readLine()) != null)
+            {
+                String [] Campos = texto.split("[|\n]");
+                if(Campos.length > 0)
+                {
+                    //{"ID", "Descripcion", "Importante", "Completa", "Fecha Vencimiento", "ListaID", "Lista"};
+                    Tarea t = new Tarea();
+                    t.setTareaId(Integer.parseInt(Campos[0]));
+                    t.setDescripcion(Campos[1]);
+                    
+                    boolean importante = false; 
+                    if(Campos[2].equals("true"))
+                    {
+                        importante = true;
+                    }
+                    t.setEsImportante(importante);
+                    
+                    boolean completa = false;
+                    if(Campos[3].equals("true"))
+                    {
+                        completa = true;
+                    }
+                    t.setCompleta(completa);
+                    
+                    String Fecha = Campos[4].toString();
+                    Date fechaV = new Date(Fecha);
+                    t.setFechaVencimiento(fechaV);
+                    
+                    t.setListaId(Integer.parseInt(Campos[5]));      
+                    listaTareas.add(t);
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(frmCrearListas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ActualizarTabla();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnEliminarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTareaActionPerformed
+        EliminarPorId();
+        VaciarFormulario();
+    }//GEN-LAST:event_btnEliminarTareaActionPerformed
+
+    private void btnEditarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarTareaActionPerformed
+        ActualizarPorId();
+        VaciarFormulario();
+    }//GEN-LAST:event_btnEditarTareaActionPerformed
+
+    private void dgvTareasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dgvTareasMouseClicked
+        JTable target = (JTable)evt.getSource();
+       int row = target.getSelectedRow(); 
+       int column = target.getSelectedColumn(); 
+       Object id = dgvTareas.getValueAt(row, 0);
+       Seleccionado = BuscarPorId((int) id);
+       
+       txtDescripcionTarea.setText(Seleccionado.Descripcion);
+       cmbListas.setSelectedIndex(Seleccionado.ListaId);
+       jdFechaVencimiento.setDate(Seleccionado.FechaVencimiento);
+       cbImportante.setSelected(Seleccionado.EsImportante);
+       cbCompletada.setSelected(Seleccionado.Completa);    
+       
+       
+       Date fechaHoy = new Date();       
+       Date fechaVencimiento = jdFechaVencimiento.getDate();
+       
+       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        
+       String tFechaHoy = formatter.format(fechaHoy);
+       String tfechaVencimiento = formatter.format(fechaVencimiento);
+       
+       if(tFechaHoy.equals(tfechaVencimiento))
+       {
+           cbParaHoy.setSelected(true);
+       }
+       else
+       {
+           cbParaHoy.setSelected(false);
+       }
+        
+    }//GEN-LAST:event_dgvTareasMouseClicked
+
+    private void cbParaHoyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbParaHoyMouseClicked
+        
+    }//GEN-LAST:event_cbParaHoyMouseClicked
+
+    private void cbParaHoyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbParaHoyActionPerformed
+        if(cbParaHoy.isSelected())
+        {
+            jdFechaVencimiento.setEnabled(false);
+        }
+        else
+        {
+            jdFechaVencimiento.setEnabled(true);
+        }
+    }//GEN-LAST:event_cbParaHoyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,21 +668,20 @@ public class frmCrearTarea extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarTarea;
     private javax.swing.JButton btnEditarTarea;
     private javax.swing.JButton btnEliminarTarea;
-    private javax.swing.JButton btnGrabarTarea;
     private javax.swing.JButton btnSalirTarea;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JCheckBox cbCompletada;
+    private javax.swing.JCheckBox cbImportante;
+    private javax.swing.JCheckBox cbParaHoy;
+    private javax.swing.JComboBox<String> cmbListas;
+    private javax.swing.JTable dgvTareas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private com.toedter.calendar.JDateChooser jdFechaVencimiento;
     private javax.swing.JTextField txtDescripcionTarea;
     // End of variables declaration//GEN-END:variables
 }

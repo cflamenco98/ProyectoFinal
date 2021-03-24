@@ -12,16 +12,14 @@ public class Tarea {
     public boolean EsImportante;
     public boolean Completa;
     public Date FechaVencimiento;
-    public Date FechaDia;
-    public String ListaId;
+    public int ListaId;
     
     ////////////////////////////////////////////////////////////////////
     
     public Tarea(){
     }
 
-    public Tarea(String Descripcion, boolean EsImportante, boolean Completa,
-            Date FechaVencimiento, Date FechaDia, String ListaId) {
+    public Tarea(String Descripcion, boolean EsImportante, boolean Completa, Date FechaVencimiento, int ListaId) {
         this.Descripcion = Descripcion;
         this.EsImportante = EsImportante;
         this.Completa = Completa;
@@ -29,10 +27,11 @@ public class Tarea {
         this.ListaId = ListaId;
     }
     
+    
     ////////////////////////////////////////////////////////////////////
     
      public Tarea imprimirTareas() {
-         Tarea t = new Tarea(Descripcion,EsImportante,Completa,FechaVencimiento,FechaDia,ListaId);
+         Tarea t = new Tarea(Descripcion,EsImportante,Completa,FechaVencimiento,ListaId);
          return t;
     }
      
@@ -78,19 +77,11 @@ public class Tarea {
         this.FechaVencimiento = FechaVencimiento;
     }
 
-    public Date getFechaDia() {
-        return FechaDia;
-    }
-
-    public void setFechaDia(Date FechaDia) {
-        this.FechaDia = FechaDia;
-    }
-
-    public String getListaId() {
+    public int getListaId() {
         return ListaId;
     }
 
-    public void setListaId(String ListaId) {
+    public void setListaId(int ListaId) {
         this.ListaId = ListaId;
     }
     

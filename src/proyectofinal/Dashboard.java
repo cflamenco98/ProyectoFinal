@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 public class Dashboard extends javax.swing.JFrame {
     public ImageIcon icTareasParaHoy = new ImageIcon("notification.png");
     public ImageIcon icTareasVencenHoy = new ImageIcon ("fast-time.png");
-    public ImageIcon icTareasCompletas = new ImageIcon ("checked.png");
+    public ImageIcon icTareasImportantes = new ImageIcon ("test.png");
     public ImageIcon icCrearLista = new ImageIcon ("lista-de-verificacion.png");
     public ImageIcon icTareas = new ImageIcon ("portapapeles.png");
     public ImageIcon icClose = new ImageIcon ("close.png");
@@ -18,11 +18,11 @@ public class Dashboard extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.btnTareasParaHoy.setIcon(icTareasParaHoy);
         this.btnTareasVencenHoy.setIcon(icTareasVencenHoy);
-        this.btnTareasCompletas.setIcon(icTareasCompletas);
+        this.btnTareasImportantes.setIcon(icTareasImportantes);
         
         this.btnTareasParaHoy.setBackground(Color.white);
         this.btnTareasVencenHoy.setBackground(Color.white);
-        this.btnTareasCompletas.setBackground(Color.white);
+        this.btnTareasImportantes.setBackground(Color.white);
         
         this.btnListasIcon.setIcon(icCrearLista);
         this.btnTareasIcon.setIcon(icTareas);
@@ -43,7 +43,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnTareasParaHoy = new javax.swing.JButton();
         btnTareasVencenHoy = new javax.swing.JButton();
-        btnTareasCompletas = new javax.swing.JButton();
+        btnTareasImportantes = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -85,14 +85,14 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        btnTareasCompletas.setBackground(new java.awt.Color(255, 255, 255));
-        btnTareasCompletas.setForeground(new java.awt.Color(255, 255, 255));
-        btnTareasCompletas.setBorderPainted(false);
-        btnTareasCompletas.setContentAreaFilled(false);
-        btnTareasCompletas.setFocusPainted(false);
-        btnTareasCompletas.addActionListener(new java.awt.event.ActionListener() {
+        btnTareasImportantes.setBackground(new java.awt.Color(255, 255, 255));
+        btnTareasImportantes.setForeground(new java.awt.Color(255, 255, 255));
+        btnTareasImportantes.setBorderPainted(false);
+        btnTareasImportantes.setContentAreaFilled(false);
+        btnTareasImportantes.setFocusPainted(false);
+        btnTareasImportantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTareasCompletasActionPerformed(evt);
+                btnTareasImportantesActionPerformed(evt);
             }
         });
 
@@ -102,7 +102,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("TAREAS COMPLETAS");
+        jLabel2.setText("TAREAS IMPORTANTES");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -136,7 +136,7 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnTareasCompletas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnTareasImportantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                         .addGap(26, 26, 26))
                     .addComponent(btnCloseIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -156,7 +156,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(btnTareasParaHoy, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnTareasVencenHoy, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnTareasCompletas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTareasImportantes, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(171, Short.MAX_VALUE))
         );
 
@@ -240,10 +240,10 @@ public class Dashboard extends javax.swing.JFrame {
        vencentareas.show();
     }//GEN-LAST:event_btnTareasVencenHoyActionPerformed
 
-    private void btnTareasCompletasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTareasCompletasActionPerformed
+    private void btnTareasImportantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTareasImportantesActionPerformed
         frmTareasCompletas tareascompletas = new frmTareasCompletas();
         tareascompletas.show();
-    }//GEN-LAST:event_btnTareasCompletasActionPerformed
+    }//GEN-LAST:event_btnTareasImportantesActionPerformed
 
     private void btnCloseIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseIconActionPerformed
         System.exit(0);
@@ -309,8 +309,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnListas;
     private javax.swing.JButton btnListasIcon;
     private javax.swing.JButton btnTareas;
-    private javax.swing.JButton btnTareasCompletas;
     private javax.swing.JButton btnTareasIcon;
+    private javax.swing.JButton btnTareasImportantes;
     private javax.swing.JButton btnTareasParaHoy;
     private javax.swing.JButton btnTareasVencenHoy;
     private javax.swing.JLabel jLabel1;

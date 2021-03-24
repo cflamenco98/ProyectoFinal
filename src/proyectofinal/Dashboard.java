@@ -9,7 +9,8 @@ public class Dashboard extends javax.swing.JFrame {
     public ImageIcon icTareasVencenHoy = new ImageIcon ("fast-time.png");
     public ImageIcon icTareasCompletas = new ImageIcon ("checked.png");
     public ImageIcon icCrearLista = new ImageIcon ("lista-de-verificacion.png");
-    public ImageIcon icTareas = new ImageIcon ("portapapeles.png"); 
+    public ImageIcon icTareas = new ImageIcon ("portapapeles.png");
+    public ImageIcon icClose = new ImageIcon ("close.png");
     
     public Dashboard() {
         initComponents();
@@ -25,6 +26,7 @@ public class Dashboard extends javax.swing.JFrame {
         
         this.btnListasIcon.setIcon(icCrearLista);
         this.btnTareasIcon.setIcon(icTareas);
+        this.btnCloseIcon.setIcon(icClose);
         
         
     }
@@ -45,15 +47,17 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        btnCloseIcon = new javax.swing.JButton();
         kGradientPanel2 = new keeptoo.KGradientPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        btnListasIcon = new javax.swing.JButton();
         btnListas = new javax.swing.JButton();
         btnTareasIcon = new javax.swing.JButton();
         btnTareas = new javax.swing.JButton();
+        btnListasIcon = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -104,33 +108,48 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("TAREAS VENCEN HOY");
 
+        btnCloseIcon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnCloseIcon.setForeground(new java.awt.Color(240, 240, 240));
+        btnCloseIcon.setBorder(null);
+        btnCloseIcon.setContentAreaFilled(false);
+        btnCloseIcon.setFocusPainted(false);
+        btnCloseIcon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseIconActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnTareasParaHoy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnTareasVencenHoy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnTareasCompletas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
-                .addGap(26, 26, 26))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnTareasParaHoy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnTareasVencenHoy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnTareasCompletas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                        .addGap(26, 26, 26))
+                    .addComponent(btnCloseIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(137, 137, 137)
+                .addComponent(btnCloseIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2))
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -138,7 +157,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .addComponent(btnTareasParaHoy, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnTareasVencenHoy, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnTareasCompletas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 570, 500));
@@ -154,18 +173,6 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("To Do List");
         kGradientPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 20, 310, -1));
-
-        btnListasIcon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnListasIcon.setForeground(new java.awt.Color(240, 240, 240));
-        btnListasIcon.setBorder(null);
-        btnListasIcon.setContentAreaFilled(false);
-        btnListasIcon.setFocusPainted(false);
-        btnListasIcon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListasIconActionPerformed(evt);
-            }
-        });
-        kGradientPanel2.add(btnListasIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 60, 70));
 
         btnListas.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnListas.setForeground(new java.awt.Color(240, 240, 240));
@@ -206,6 +213,18 @@ public class Dashboard extends javax.swing.JFrame {
         });
         kGradientPanel2.add(btnTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 90, 70));
 
+        btnListasIcon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnListasIcon.setForeground(new java.awt.Color(240, 240, 240));
+        btnListasIcon.setBorder(null);
+        btnListasIcon.setContentAreaFilled(false);
+        btnListasIcon.setFocusPainted(false);
+        btnListasIcon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListasIconActionPerformed(evt);
+            }
+        });
+        kGradientPanel2.add(btnListasIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 60, 70));
+
         getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 500));
 
         pack();
@@ -226,10 +245,9 @@ public class Dashboard extends javax.swing.JFrame {
         tareascompletas.show();
     }//GEN-LAST:event_btnTareasCompletasActionPerformed
 
-    private void btnListasIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListasIconActionPerformed
-        frmCrearListas crearLista = new frmCrearListas();
-        crearLista.show();
-    }//GEN-LAST:event_btnListasIconActionPerformed
+    private void btnCloseIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseIconActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnCloseIconActionPerformed
 
     private void btnTareasIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTareasIconActionPerformed
         frmCrearTarea crearTarea = new frmCrearTarea();
@@ -245,6 +263,11 @@ public class Dashboard extends javax.swing.JFrame {
         frmCrearTarea crearTarea = new frmCrearTarea();
         crearTarea.show();
     }//GEN-LAST:event_btnTareasActionPerformed
+
+    private void btnListasIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListasIconActionPerformed
+        frmCrearListas crearLista = new frmCrearListas();
+        crearLista.show();
+    }//GEN-LAST:event_btnListasIconActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,6 +305,7 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCloseIcon;
     private javax.swing.JButton btnListas;
     private javax.swing.JButton btnListasIcon;
     private javax.swing.JButton btnTareas;

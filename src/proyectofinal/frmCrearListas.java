@@ -188,7 +188,7 @@ public class frmCrearListas extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Crear Tareas");
+        jLabel11.setText("CREAR LISTA");
         kGradientPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 310, -1));
 
         getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 50));

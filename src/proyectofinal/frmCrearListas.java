@@ -21,6 +21,8 @@ public class frmCrearListas extends javax.swing.JFrame {
     public frmCrearListas() {
         initComponents();
         this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         
         Object [][] datos = new Object[][]{};
         Object [] columnas = new String [] {"ID", "Descripcion"};

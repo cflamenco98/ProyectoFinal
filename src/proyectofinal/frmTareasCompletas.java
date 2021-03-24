@@ -16,6 +16,9 @@ public class frmTareasCompletas extends javax.swing.JFrame {
      */
     public frmTareasCompletas() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
     }
 
     /**

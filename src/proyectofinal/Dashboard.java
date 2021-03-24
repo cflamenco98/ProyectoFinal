@@ -1,23 +1,32 @@
 package proyectofinal;
 
+import java.awt.Color;
 import javax.swing.ImageIcon;
 
 
 public class Dashboard extends javax.swing.JFrame {
-    public ImageIcon icTareasParaHoy = new ImageIcon("computer.png");
-    public ImageIcon icTareasVencenHoy = new ImageIcon ("2.png");
-    public ImageIcon icTareasCompletas = new ImageIcon ("3.png");
-    public ImageIcon icCrearLista = new ImageIcon ("1.png");
-    public ImageIcon icTareas = new ImageIcon ("libros1.png"); 
+    public ImageIcon icTareasParaHoy = new ImageIcon("notification.png");
+    public ImageIcon icTareasVencenHoy = new ImageIcon ("fast-time.png");
+    public ImageIcon icTareasCompletas = new ImageIcon ("checked.png");
+    public ImageIcon icCrearLista = new ImageIcon ("lista-de-verificacion.png");
+    public ImageIcon icTareas = new ImageIcon ("portapapeles.png"); 
     
     public Dashboard() {
         initComponents();
         this.setResizable(false);
+        this.setLocationRelativeTo(null);
         this.btnTareasParaHoy.setIcon(icTareasParaHoy);
         this.btnTareasVencenHoy.setIcon(icTareasVencenHoy);
         this.btnTareasCompletas.setIcon(icTareasCompletas);
-        this.btnCrearListas.setIcon(icCrearLista);
-        this.btnVerListas.setIcon(icTareas);
+        
+        this.btnTareasParaHoy.setBackground(Color.white);
+        this.btnTareasVencenHoy.setBackground(Color.white);
+        this.btnTareasCompletas.setBackground(Color.white);
+        
+        this.btnListasIcon.setIcon(icCrearLista);
+        this.btnTareasIcon.setIcon(icTareas);
+        
+        
     }
 
     /**
@@ -29,81 +38,177 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         btnTareasParaHoy = new javax.swing.JButton();
         btnTareasVencenHoy = new javax.swing.JButton();
         btnTareasCompletas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btnCrearListas = new javax.swing.JButton();
+        kGradientPanel2 = new keeptoo.KGradientPanel();
         jLabel4 = new javax.swing.JLabel();
-        btnVerListas = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        btnListasIcon = new javax.swing.JButton();
+        btnListas = new javax.swing.JButton();
+        btnTareasIcon = new javax.swing.JButton();
+        btnTareas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnTareasParaHoy.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(102, 102, 102));
+
+        btnTareasParaHoy.setBackground(new java.awt.Color(255, 255, 255));
+        btnTareasParaHoy.setForeground(new java.awt.Color(255, 255, 255));
+        btnTareasParaHoy.setBorderPainted(false);
+        btnTareasParaHoy.setContentAreaFilled(false);
+        btnTareasParaHoy.setFocusPainted(false);
         btnTareasParaHoy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTareasParaHoyActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTareasParaHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 144, 160));
 
-        btnTareasVencenHoy.setBackground(new java.awt.Color(204, 204, 255));
+        btnTareasVencenHoy.setBackground(new java.awt.Color(255, 255, 255));
+        btnTareasVencenHoy.setForeground(new java.awt.Color(255, 255, 255));
+        btnTareasVencenHoy.setBorderPainted(false);
+        btnTareasVencenHoy.setContentAreaFilled(false);
+        btnTareasVencenHoy.setFocusPainted(false);
         btnTareasVencenHoy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTareasVencenHoyActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTareasVencenHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 141, 160));
 
-        btnTareasCompletas.setBackground(new java.awt.Color(255, 204, 204));
+        btnTareasCompletas.setBackground(new java.awt.Color(255, 255, 255));
+        btnTareasCompletas.setForeground(new java.awt.Color(255, 255, 255));
+        btnTareasCompletas.setBorderPainted(false);
+        btnTareasCompletas.setContentAreaFilled(false);
+        btnTareasCompletas.setFocusPainted(false);
         btnTareasCompletas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTareasCompletasActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTareasCompletas, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 156, 160));
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
         jLabel1.setText("TAREAS PARA HOY");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
         jLabel2.setText("TAREAS VENCEN HOY");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
         jLabel3.setText("TAREAS COMPLETAS");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, -1, 14));
 
-        btnCrearListas.setBackground(new java.awt.Color(214, 234, 248));
-        btnCrearListas.addActionListener(new java.awt.event.ActionListener() {
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(btnTareasParaHoy, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnTareasVencenHoy, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnTareasCompletas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(45, 45, 45)
+                .addComponent(jLabel3)
+                .addGap(45, 45, 45))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnTareasParaHoy, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTareasVencenHoy, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTareasCompletas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(184, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 570, 500));
+
+        kGradientPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinal/grap.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        kGradientPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 290, 370, 180));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("To Do List");
+        kGradientPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 20, 310, -1));
+
+        btnListasIcon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnListasIcon.setForeground(new java.awt.Color(240, 240, 240));
+        btnListasIcon.setBorder(null);
+        btnListasIcon.setContentAreaFilled(false);
+        btnListasIcon.setFocusPainted(false);
+        btnListasIcon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearListasActionPerformed(evt);
+                btnListasIconActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCrearListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 144, 162));
+        kGradientPanel2.add(btnListasIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 60, 70));
 
-        jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
-        jLabel4.setText("LISTAS");
-        jLabel4.setToolTipText("");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
-
-        btnVerListas.setBackground(new java.awt.Color(251, 238, 230));
-        btnVerListas.addActionListener(new java.awt.event.ActionListener() {
+        btnListas.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnListas.setForeground(new java.awt.Color(240, 240, 240));
+        btnListas.setText("Listas");
+        btnListas.setBorder(null);
+        btnListas.setContentAreaFilled(false);
+        btnListas.setFocusPainted(false);
+        btnListas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerListasActionPerformed(evt);
+                btnListasActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVerListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 144, 162));
+        kGradientPanel2.add(btnListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 90, 70));
 
-        jLabel5.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
-        jLabel5.setText("TAREAS");
-        jLabel5.setToolTipText("");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 60, -1));
+        btnTareasIcon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnTareasIcon.setForeground(new java.awt.Color(240, 240, 240));
+        btnTareasIcon.setBorder(null);
+        btnTareasIcon.setContentAreaFilled(false);
+        btnTareasIcon.setFocusPainted(false);
+        btnTareasIcon.setMargin(new java.awt.Insets(2, 14, 2, 10));
+        btnTareasIcon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTareasIconActionPerformed(evt);
+            }
+        });
+        kGradientPanel2.add(btnTareasIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 80, 70));
+
+        btnTareas.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnTareas.setForeground(new java.awt.Color(240, 240, 240));
+        btnTareas.setText("Tareas");
+        btnTareas.setBorder(null);
+        btnTareas.setContentAreaFilled(false);
+        btnTareas.setFocusPainted(false);
+        btnTareas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTareasActionPerformed(evt);
+            }
+        });
+        kGradientPanel2.add(btnTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 90, 70));
+
+        getContentPane().add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -112,16 +217,6 @@ public class Dashboard extends javax.swing.JFrame {
         frmTareasParaHoy tareasparahoy = new frmTareasParaHoy();
         tareasparahoy.show();
     }//GEN-LAST:event_btnTareasParaHoyActionPerformed
-
-    private void btnCrearListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearListasActionPerformed
-        frmCrearListas crearLista = new frmCrearListas();
-        crearLista.show();
-    }//GEN-LAST:event_btnCrearListasActionPerformed
-
-    private void btnVerListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerListasActionPerformed
-        frmCrearTarea crearTarea = new frmCrearTarea();
-        crearTarea.show();
-    }//GEN-LAST:event_btnVerListasActionPerformed
 
     private void btnTareasVencenHoyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTareasVencenHoyActionPerformed
        frmTareasVencenHoy vencentareas = new frmTareasVencenHoy();
@@ -132,6 +227,26 @@ public class Dashboard extends javax.swing.JFrame {
         frmTareasCompletas tareascompletas = new frmTareasCompletas();
         tareascompletas.show();
     }//GEN-LAST:event_btnTareasCompletasActionPerformed
+
+    private void btnListasIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListasIconActionPerformed
+        frmCrearListas crearLista = new frmCrearListas();
+        crearLista.show();
+    }//GEN-LAST:event_btnListasIconActionPerformed
+
+    private void btnTareasIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTareasIconActionPerformed
+        frmCrearTarea crearTarea = new frmCrearTarea();
+        crearTarea.show();
+    }//GEN-LAST:event_btnTareasIconActionPerformed
+
+    private void btnListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListasActionPerformed
+        frmCrearListas crearLista = new frmCrearListas();
+        crearLista.show();
+    }//GEN-LAST:event_btnListasActionPerformed
+
+    private void btnTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTareasActionPerformed
+        frmCrearTarea crearTarea = new frmCrearTarea();
+        crearTarea.show();
+    }//GEN-LAST:event_btnTareasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,15 +284,19 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCrearListas;
+    private javax.swing.JButton btnListas;
+    private javax.swing.JButton btnListasIcon;
+    private javax.swing.JButton btnTareas;
     private javax.swing.JButton btnTareasCompletas;
+    private javax.swing.JButton btnTareasIcon;
     private javax.swing.JButton btnTareasParaHoy;
     private javax.swing.JButton btnTareasVencenHoy;
-    private javax.swing.JButton btnVerListas;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private keeptoo.KGradientPanel kGradientPanel2;
     // End of variables declaration//GEN-END:variables
 }

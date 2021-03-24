@@ -29,6 +29,8 @@ public class frmCrearTarea extends javax.swing.JFrame {
         initComponents();
         
         this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         ObtenerListas();
         
         Object [][] datos = new Object[][]{};

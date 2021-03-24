@@ -16,6 +16,9 @@ public class frmTareasVencenHoy extends javax.swing.JFrame {
      */
     public frmTareasVencenHoy() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
     }
 
     /**

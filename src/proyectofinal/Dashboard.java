@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 
 
 public class Dashboard extends javax.swing.JFrame {
+    //Declaracion de iconos para ser seteados en componentes del formulario
     public ImageIcon icTareasParaHoy = new ImageIcon("notification.png");
     public ImageIcon icTareasVencenHoy = new ImageIcon ("fast-time.png");
     public ImageIcon icTareasImportantes = new ImageIcon ("test.png");
@@ -14,6 +15,7 @@ public class Dashboard extends javax.swing.JFrame {
     
     public Dashboard() {
         initComponents();
+        //Configuracion general y seteo de iconos a botones
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.btnTareasParaHoy.setIcon(icTareasParaHoy);
@@ -26,8 +28,7 @@ public class Dashboard extends javax.swing.JFrame {
         
         this.btnListasIcon.setIcon(icCrearLista);
         this.btnTareasIcon.setIcon(icTareas);
-        this.btnCloseIcon.setIcon(icClose);
-        
+        this.btnCloseIcon.setIcon(icClose);       
         
     }
 
@@ -230,25 +231,30 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Boton que abre las tareas para hoy
     private void btnTareasParaHoyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTareasParaHoyActionPerformed
         frmTareasParaHoy tareasparahoy = new frmTareasParaHoy();
         tareasparahoy.show();
     }//GEN-LAST:event_btnTareasParaHoyActionPerformed
 
+    //Boton que abre las tareas que vencen hoy
     private void btnTareasVencenHoyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTareasVencenHoyActionPerformed
        frmTareasVencenHoy vencentareas = new frmTareasVencenHoy();
        vencentareas.show();
     }//GEN-LAST:event_btnTareasVencenHoyActionPerformed
 
+    //Boton que abre las tareas importantes
     private void btnTareasImportantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTareasImportantesActionPerformed
         frmTareasCompletas tareascompletas = new frmTareasCompletas();
         tareascompletas.show();
     }//GEN-LAST:event_btnTareasImportantesActionPerformed
 
+    //Boton que cierra todo
     private void btnCloseIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseIconActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnCloseIconActionPerformed
 
+    //BOTONES PARA ABRIR LISTAS Y TAREAS YA SEA EN EL ICONO O EL BOTON
     private void btnTareasIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTareasIconActionPerformed
         frmCrearTarea crearTarea = new frmCrearTarea();
         crearTarea.show();

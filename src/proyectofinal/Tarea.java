@@ -1,20 +1,14 @@
 package proyectofinal;
 import java.util.Date;
-/**
- *
- * @author cFlamenco y Heyzi Irias
- */
-public class Tarea {    
-    ////////////////////////////////////////////////////////////////////
-    
+
+//Modelo del objeto tarea
+public class Tarea {
     public int tareaId;
     public String Descripcion;
     public boolean EsImportante;
     public boolean Completa;
     public Date FechaVencimiento;
-    public int ListaId;
-    
-    ////////////////////////////////////////////////////////////////////
+    public int ListaId;    
     
     public Tarea(){
     }
@@ -25,17 +19,7 @@ public class Tarea {
         this.Completa = Completa;
         this.FechaVencimiento = FechaVencimiento;
         this.ListaId = ListaId;
-    }
-    
-    
-    ////////////////////////////////////////////////////////////////////
-    
-     public Tarea imprimirTareas() {
-         Tarea t = new Tarea(Descripcion,EsImportante,Completa,FechaVencimiento,ListaId);
-         return t;
-    }
-     
-     ////////////////////////////////////////////////////////////////////
+    }    
 
     public int getTareaId() {
         return tareaId;
@@ -84,7 +68,5 @@ public class Tarea {
     public void setListaId(int ListaId) {
         this.ListaId = ListaId;
     }
-    
-    ////////////////////////////////////////////////////////////////////
      
 }

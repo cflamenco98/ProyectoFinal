@@ -14,12 +14,14 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class frmCrearListas extends javax.swing.JFrame {
+    //Variables globales para almacenar listas y setear el registro seleccionado
     ArrayList<Lista> lista = new ArrayList<>();
     Lista Seleccionado = null;    
     
     
     public frmCrearListas() {
         initComponents();
+        //Configuracion general y declaracion del modelo del grid
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
@@ -31,6 +33,7 @@ public class frmCrearListas extends javax.swing.JFrame {
         dgvListas.setModel(model);       
     }
     
+    //Metodo para actualizar tabla
     void ActualizarTabla()
     {
         Object [][] datos = new Object[lista.size()][2];
@@ -45,6 +48,7 @@ public class frmCrearListas extends javax.swing.JFrame {
         dgvListas.setModel(model);        
     }
     
+    //Metodo para actualizar IDs de la tabla
     void ActualizarIds()
     {  
         for (int i = 0; i < lista.size(); i++) {
@@ -52,6 +56,7 @@ public class frmCrearListas extends javax.swing.JFrame {
         }
     }
     
+    //Metodo para guardar las listas
     void GuardarListas()
     {      
         //Variables              
@@ -88,6 +93,7 @@ public class frmCrearListas extends javax.swing.JFrame {
     }            
     }
     
+    //Metodo para buscar listas por id
     Lista BuscarPorId(int id)
     {     
         ActualizarTabla();
@@ -101,6 +107,7 @@ public class frmCrearListas extends javax.swing.JFrame {
         return new Lista();     
     }
     
+    //Metodo para eliminar listas por id
     void EliminarPorId()
     {        
         if(Seleccionado == null)
@@ -124,6 +131,7 @@ public class frmCrearListas extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "¡Ha ocurrido un error mientras eliminabamos este registro!");            
     }
     
+    //Metodo para actualizar listas por id
     void ActualizarPorId()
     {  
         if(Seleccionado == null)
@@ -166,13 +174,13 @@ public class frmCrearListas extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtNombreLista = new javax.swing.JTextField();
-        btnEditar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
-        btnAgregar = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         dgvListas = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        btnAgregar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -196,34 +204,6 @@ public class frmCrearListas extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(102, 102, 102));
 
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
-        btnAgregar.setText("Agregar");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
-            }
-        });
-
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-
         dgvListas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -244,6 +224,42 @@ public class frmCrearListas extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre:");
 
+        btnAgregar.setBackground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setBackground(new java.awt.Color(255, 255, 255));
+        btnEditar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -252,13 +268,13 @@ public class frmCrearListas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
@@ -281,7 +297,7 @@ public class frmCrearListas extends javax.swing.JFrame {
                     .addComponent(btnSalir))
                 .addGap(16, 16, 16)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 480, 400));
@@ -289,28 +305,7 @@ public class frmCrearListas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        if(txtNombreLista.getText().equals("") || txtNombreLista.getText() == null)
-        {
-            JOptionPane.showMessageDialog(null, "Debe ingresar un nombre a la lista!!!");
-        }
-        else
-        {
-            lista.add(new Lista(txtNombreLista.getText()));
-            txtNombreLista.setText("");
-            ActualizarIds();
-            ActualizarTabla();  
-            GuardarListas();
-        }
-    }//GEN-LAST:event_btnAgregarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        txtNombreLista.setText("");
-        this.dispose();
-        ActualizarTabla();
-        GuardarListas();        
-    }//GEN-LAST:event_btnSalirActionPerformed
-
+    //Evento cuando abre el formulario que carga las listas al aparecer
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
             File file = new File("Listas.txt");
@@ -336,14 +331,7 @@ public class frmCrearListas extends javax.swing.JFrame {
         ActualizarTabla();
     }//GEN-LAST:event_formWindowOpened
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        ActualizarPorId();
-    }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-       EliminarPorId();
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
+    //Evento cuando le dan click a un registro del grid cargue un objeto seleccionado por medio de la deteccion de la fila y columna seleccionada
     private void dgvListasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dgvListasMouseClicked
        JTable target = (JTable)evt.getSource();
        int row = target.getSelectedRow(); 
@@ -352,6 +340,40 @@ public class frmCrearListas extends javax.swing.JFrame {
        Seleccionado = BuscarPorId((int) id);
        txtNombreLista.setText(Seleccionado.Nombre);
     }//GEN-LAST:event_dgvListasMouseClicked
+
+    //Evento para agregar
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        if(txtNombreLista.getText().equals("") || txtNombreLista.getText() == null)
+        {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un nombre a la lista!!!");
+        }
+        else
+        {
+            lista.add(new Lista(txtNombreLista.getText()));
+            txtNombreLista.setText("");
+            ActualizarIds();
+            ActualizarTabla();  
+            GuardarListas();
+        }
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    //Evento para editar
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        ActualizarPorId();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    //Evento para eliminar
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        EliminarPorId();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    //Evento para salir
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        txtNombreLista.setText("");
+        this.dispose();
+        ActualizarTabla();
+        GuardarListas();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments

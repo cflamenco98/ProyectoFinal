@@ -1,17 +1,10 @@
 package proyectofinal;
-import java.util.ArrayList;
-/**
- *
- * @author  cFlamenco y Heyzi Irias
- */
+
+//Modelo del objeto lista
 public class Lista {    
-    ////////////////////////////////////////////////////////////////////
-    
     public int listaId;
-    public String Nombre;   
- 
-    ////////////////////////////////////////////////////////////////////
-    
+    public String Nombre;  
+
     public Lista(){
     }
 
@@ -23,8 +16,6 @@ public class Lista {
         this.listaId = listaId;
         this.Nombre = Nombre;
     }
-    
-    ////////////////////////////////////////////////////////////////////
     
     public int getListaId() {
         return listaId;
@@ -41,7 +32,5 @@ public class Lista {
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
     }
-    
-    ////////////////////////////////////////////////////////////////////
 
 }

@@ -1,5 +1,4 @@
-0|holis|
-1|asdasd|
-2|heyzi|
-3|CALCULO|
-4|tareas del miercoles|
+0|Programacion|
+1|Calculo 1|
+2|Supermercado|
+3|Ejercicio|

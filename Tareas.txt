@@ -1,4 +1,4 @@
-0|tarea editada|false|true|Thu Mar 25 21:18:15 CST 2021|0|
-1|prueba de heyzi|false|true|Tue Mar 23 21:34:01 CST 2021|2|
-2|EXAMEN|false|true|Tue Mar 23 21:36:52 CST 2021|3|
-3|esta tarea es para hoy|true|true|Thu Mar 25 17:33:25 CST 2021|0|
+0|Ir de compras y traer frutas.|false|true|Thu Mar 25 16:49:29 CST 2021|2|
+1|Proyecto To Do List|true|false|Fri Mar 26 21:18:15 CST 2021|0|
+2|Hacer los ejercicios de la pagina 123|false|false|Thu Mar 25 16:51:56 CST 2021|1|
+3|Hacer 1 hr de cardio y sentadillas.|false|true|Thu Mar 25 16:52:45 CST 2021|3|
